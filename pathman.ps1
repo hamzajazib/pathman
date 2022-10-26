@@ -5,17 +5,14 @@ param
 	[switch]$sys = $false,
 	[switch]$add = $false,
 	[switch]$remove = $false,
+	[switch]$raw = $false,
+
+	[Alias("d")]
 	[string]$dir
 )
 
-if ($sys)
-{
-	$access = "MACHINE"
-}
-else
-{
-	$access = "USER"
-}
+if ($sys){$access = "MACHINE"}
+else{$access = "USER"}
 
 if ($add -and !$remove)
 {
@@ -23,7 +20,7 @@ if ($add -and !$remove)
 	{
 		if( !(Test-Path $dir) )
 		{
-			Write-Host "Directory not found." -ForegroundColor red
+			Write-Host "Path not found." -ForegroundColor red
 		}
 		else
 		{
